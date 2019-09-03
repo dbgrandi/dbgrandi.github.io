@@ -1,0 +1,16 @@
+---
+layout: default
+---
+
+{% for article in site.posts %}
+<article>
+    <div class="date">
+        {{ article.date | date: "%b %d, %Y" }}
+    </div>
+    <div class="title">
+        <a href="{{ article.url }}">
+            {{ article.title }}
+        </a>
+    </div>
+</article>
+{% endfor %}

@@ -1,0 +1,11 @@
+source: ./source
+destination: ./build
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "article"
+sass:
+    sass_dir: _sass

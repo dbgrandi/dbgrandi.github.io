@@ -3,10 +3,12 @@ article {
   
   .title {
     a {
+      color: var(--primary-text-color);
       text-decoration: none;
     }
     
     a:hover {
+      color: var(--link-hover-color);
       text-decoration: none;
     }
   }

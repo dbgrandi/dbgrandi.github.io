@@ -9,20 +9,15 @@ header {
   padding-bottom:20px;
 
   h1 {
-    color: #4A4A4A;
+    color: var(--primary-text-color);
     text-transform: uppercase;
     padding: 25px 0 20px;
     margin: 0;
 
     a {
-      color: rgba(0, 0, 0, 1);
+      color: var(--primary-text-color);
       font-family: AvenirNext-UltraLight, sans-serif;
-      -webkit-transition: color 1s ease;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: rgba(50, 50, 50, 1);
+      transition: color 0.3s ease;
       text-decoration: none;
     }
   }

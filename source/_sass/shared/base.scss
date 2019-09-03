@@ -2,19 +2,61 @@
   margin: 0;
 }
 
+:root {
+  color-scheme: light dark;
+
+  --background-color: #FFFFFF;
+  --primary-text-color: var(--batcave);
+  --secondary-text-color: var(--charcoal);
+  --tertiary-text-color: var(--battleship);
+  --link-color: var(--smurfette);
+  --link-hover-color: #0F69FF;
+  --visited-link-color: var(--hulk-pants);
+
+  /* Fuji color palette */
+
+  --grey-hair: #F1F1F5;
+  --black: #000000;
+
+  --batcave: #232A31;
+  --charcoal: #464E56;
+  --battleship: #5B636A;
+
+  --marshmallow: #F7F8FF;
+  --dirty-seagull: #E0E4E9;
+  --pebble: #B9BDC5;
+
+  --smurfette: #188FFF;
+  --slurpee: #0C9EF2;
+
+  --hulk-pants: #6D00F6;
+  --blurple: #5D5EFF;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+      --background-color: var(--black);
+      --primary-text-color: var(--marshmallow);
+      --secondary-text-color: var(--dirty-seagull);
+      --tertiary-text-color: var(--pebble);
+      --link-color: #1DAFFD;
+      --link-hover-color: var(--smurfette);
+      --visited-link-color: var(--blurple);
+  }
+}
+
 html {
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
   height:100%;
-  background: #FFF;
-//  background: #F4F4F4;
 }
 
 body {
+  background-color: var(--background-color);
   height:100%;
   font-family: 'AvenirNext', 'Helvetica Neue', Helvetica-Neue, helvetica, sans-serif;
   font-weight:300;
   text-rendering:optimizeLegibility;
-  background: #FFF;
-//  background: #F4F4F4;
 }
 
 .wrapper {
@@ -52,11 +94,13 @@ body {
 }
 
 a {
-  color: rgba(60, 60, 90, 1.0);
+  color: var(--link-color);
+  transition: color 0.3s ease;
   padding: 1px 1px 0px;
 }
 
 a:hover {
+  color: var(--link-hover-color);
 }
 
 h1 {
