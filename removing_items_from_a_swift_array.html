@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width" name="viewport"/>
+    <meta name="description" content="programmer and manager of the chaos"/>
+    <title>Removing Items from a Swift Array</title>
+    <link rel="stylesheet" href="/css/all.css">
+  </head>
+  <body>
+      <div class="wrapper">
+          <header>
+              <h1><a href="/">David Grandinetti</a></h1>
+          </header>
+          <div class="container">
+              <div class="inner">
+                    <h1>
+  Removing Items from a Swift Array
+</h1>
+<h4 class="date">
+  Aug 23, 2014
+</h4>
+<article>
+    <p>While the semantics of Swift are still being ironed out, it seems like there is a <a href="https://devforums.apple.com/message/979026#979026">bit of discussion</a> about what that may look like, specifically when it comes to Arrays.</p>
+
+<p>Here’s a simple Array extension to remove instances of a specific item. The type details were inspired by <a href="https://github.com/pNre/ExSwift/blob/master/ExSwift/Array.swift">ExSwift</a>, but I didnt’ want to create a new array like pNre did.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">extension</span> <span class="kt">Array</span> <span class="p">{</span>
+  <span class="k">mutating</span> <span class="kd">func</span> <span class="n">remove</span> <span class="o">&lt;</span><span class="kt">U</span><span class="p">:</span> <span class="kt">Equatable</span><span class="o">&gt;</span> <span class="p">(</span><span class="nv">object</span><span class="p">:</span> <span class="kt">U</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="nf">stride</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">count</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nv">through</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">by</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="k">let</span> <span class="nv">element</span> <span class="o">=</span> <span class="k">self</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">as?</span> <span class="kt">U</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="n">element</span> <span class="o">==</span> <span class="n">object</span> <span class="p">{</span>
+          <span class="k">self</span><span class="o">.</span><span class="nf">removeAtIndex</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">var</span> <span class="nv">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="nf">println</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1">// "[1,2,3,2,4]"</span>
+<span class="n">a</span><span class="o">.</span><span class="nf">remove</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nf">println</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1">// "[1,3,4]"</span>
+</code></pre></div></div>
+
+<p>Update from <a href="https://twitter.com/orta">@orta</a>: The other part of this that can be tricky is making sure your objects are properly equatable.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="kt">TinkerObject</span> <span class="p">:</span> <span class="kt">Equatable</span> <span class="p">{</span>
+  <span class="c1">// your class impl...</span>
+<span class="p">}</span>
+
+<span class="c1">// note that this is OUTSIDE of your class impl to make it global</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="o">==</span><span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">TinkerObject</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">TinkerObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">lhs</span><span class="o">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">rhs</span><span class="o">.</span><span class="n">id</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+</article>
+
+              </div>
+          </div>
+          <footer>
+              <div class="social">
+                <a href="https://twitter.com/dbgrandi"><img size="128x128" alt="David's Twitter Account" src="/images/twitter-120.png"/></a>
+                <a href="https://github.com/dbgrandi"><img size="128x128" alt="David's Github Account" src="/images/github-120.png"/></a>
+              </div>
+          </footer>
+      </div>
+  </body>
+</html>
